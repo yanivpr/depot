@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
 	  if line_items.count.zero?
 		  return true
 	  else
+		  errors[:base] << "Line Items present"
 		  return false
 	  end
 	end
