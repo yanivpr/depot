@@ -8,21 +8,17 @@ Depot::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  resources :users
-
-  resources :orders
-
-  resources :line_items
-
-  resources :carts
-
-  get "store/index"
-
-  resources :products do
-    get :who_bought, :on => :member
+  scope '(:locale)' do
+    resources :users
+    resources :orders
+    resources :line_items
+    resources :carts
+    resources :products do
+      get :who_bought, :on => :member
+    end
+    root :to => 'store#index', :as => 'store'
   end
 
-  root :to => 'store#index', :as => 'store'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
